@@ -1,10 +1,24 @@
 var express = require('express');
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 app.get('/', function(req, res) {
-  res.send('Test!');
+  res.sendFile(__dirname + '/client/index.html');
 });
 
-app.listen(3000, function() {
-  console.log('Server listening on port 3000!');
+var numUsers = 0;
+
+io.on('connection', function(socket){
+  numUsers++;
+  console.log(numUsers + " online");
+  socket.on('disconnect', function(){
+    numUsers--;
+    console.log(numUsers + " online");
+  });
+});
+
+http.listen(3000, function(){
+  console.log('listening on port 3000');
 });
