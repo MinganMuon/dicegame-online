@@ -4,9 +4,64 @@
     <title>Dice game</title>
   </head>
   <body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
+    <div id="gameArea">
+      
+    </div>
+    
+    <script id="intro-screen-template" type="text/template">
+        <div class="titleWrapper">
+
+            <div class="title">
+                <h1>Dice game</h1>
+            </div>
+
+            <div class="buttons">
+                <button id="btnMakeGame">Make new game</button>
+                <button id="btnJoinGame">Join existing game</button>
+            </div>
+
+        </div>
     </script>
+    
+    <script id="make-game-template" type="text/template">
+        <div class="titleWrapper">
+
+            <div class="title">
+              <h1>Make a new game</h1>
+            </div>
+            
+            <div class="inputs">
+              Name: <input id="name-input" type="text">
+            </div>
+            
+            <div class="buttons">
+              <button id="btnMakeGame">Make new game</button>
+            </div>
+
+        </div>
+    </script>
+    
+    <script id="join-game-template" type="text/template">
+        <div class="titleWrapper">
+
+            <div class="title">
+              <h1>Join an existing game</h1>
+            </div>
+            
+            <div class="inputs">
+              Name: <input id="name-input" type="text">
+              Game ID: <input id="gameid-input" type="text">
+            </div>
+            
+            <div class="buttons">
+              <button id="btnMakeGame">Join game</button>
+            </div>
+
+        </div>
+    </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
   </body>
 </html>
