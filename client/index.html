@@ -16,8 +16,8 @@
             </div>
 
             <div class="buttons">
-                <button id="btnMakeGame">Make new game</button>
-                <button id="btnJoinGame">Join existing game</button>
+                <button id="btnIntroMakeGame">Make new game</button>
+                <button id="btnIntroJoinGame">Join existing game</button>
             </div>
 
         </div>
@@ -50,11 +50,30 @@
             
             <div class="inputs">
               Name: <input id="name-input" type="text">
+              <br>
               Game ID: <input id="gameid-input" type="text">
             </div>
             
             <div class="buttons">
-              <button id="btnMakeGame">Join game</button>
+              <button id="btnJoinGame">Join game</button>
+            </div>
+
+        </div>
+    </script>
+    
+    <script id="wait-screen-template" type="text/template">
+        <div class="titleWrapper">
+
+            <div class="title">
+                <h1>Room <span id="roomno-wait">0</p></h1>
+            </div>
+            
+            <div class="numberofplayers">
+              There are <span id="numberofplayers">0</p> currently waiting.
+            </div>
+
+            <div class="buttons">
+                <button id="btnStartGame">Start the game</button>
             </div>
 
         </div>

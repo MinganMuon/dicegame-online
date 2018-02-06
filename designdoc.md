@@ -13,7 +13,7 @@ client connects
     clear screen
     FOR TESTING: show game id (and stop game button for client who made the game)
   when game stops
-    go back to title screen
+    go back to title screen (may need to force a refresh to do this)
 
 ## server side
 when client connects
@@ -21,7 +21,7 @@ when client connects
     create new room with a random room id
     add client to room with given name
   when client wants to join a game (room)
-    if room exists
+    if room exists and game has not already started
       add client to given room with given name
   tell client join/make was successful
     broadcast to whole room the updated number of players
