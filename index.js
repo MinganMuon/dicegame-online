@@ -87,11 +87,25 @@ io.on('connection', function(socket){
     
   });
   
-  // TODO: add something here to remove client from user list on disconnect
   socket.on('disconnect', function(){
     numUsers--;
     console.log(numUsers + " online");
+    
+    let sid = socket.id;
+    for (var i = 0; i < rooms.length; i++) {
+      uindex = rooms[i].users.findIndex(item => item.id === sid);
+      if (uindex !== -1) {
+        // the user was in a room
+        uname = rooms[i].users[uindex].name;
+        rooms[i].users.splice(uindex,1); // remove user from rooms
+        // emit number of users in room to people in room
+        io.to(rooms[i].roomID).emit('number in room', rooms[i].users.length, rooms[i].roomID);
+        // logging
+        console.log(uname + ' left room ' + rooms[i].roomID);
+      }
+    }
   });
+  
 });
 
 http.listen(3000, function(){
