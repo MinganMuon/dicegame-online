@@ -65,6 +65,7 @@ io.on('connection', function(socket){
           name: givenname,
           host: false
         });
+        socket.join(gameID);
         let numberinroom = getnuminroom(gameID);
         // emit number of users in room to client who joined
         socket.emit('join successful', gameID, numberinroom);

@@ -11,7 +11,6 @@ $(document).ready(function(){
     $('span#numberofplayers').text(numinroom.toString());
     $('span#roomno-wait').text(roomnum.toString());
   });
-  // BUG: the joined clients dont update their numberofplayers for some odd reason
   
   socket.on('make successful', function(roomno) {
     ishost = true;
