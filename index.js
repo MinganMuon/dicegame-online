@@ -81,11 +81,48 @@ io.on('connection', function(socket){
   });
   
   socket.on('startGame', function(){
-    
+    console.log("received request for startGame");
+    gameID = parseInt(Object.keys(socket.rooms).filter(item => item != socket.id)[0]);
+    rid = rooms.findIndex(o => o.roomID === gameID);
+    if (rid !== -1) {
+      if (!rooms[rid].started) {
+        uid = rooms[rid].users.findIndex(o => o.id === socket.id);
+        if (uid !== -1) {
+          if (rooms[rid].users[uid].host){
+            // room has been created, game has not started, user is in room, user is host
+            // now start the game
+            rooms[rid].started = true;
+            socket.emit('game start successful');
+            io.to(gameID).emit('game started');
+            // "game logic"
+            io.to(gameID).emit('game-title', 'THIS IS THE GAME');
+          }
+        }
+      }
+    }
+    console.log("game started in room " + gameID.toString());
   });
   
   socket.on('stopGame', function(){
-    
+    console.log("received request for stopGame");
+    gameID = parseInt(Object.keys(socket.rooms).filter(item => item != socket.id)[0]);
+    rid = rooms.findIndex(o => o.roomID === gameID);
+    if (rid !== -1) {
+      if (rooms[rid].started) {
+        uid = rooms[rid].users.findIndex(o => o.id === socket.id);
+        if (uid !== -1) {
+          if (rooms[rid].users[uid].host){
+            // room has been created, game has started, user is in room, user is host
+            // now stop the game
+            rooms[rid].started = false; // is this line really needed?
+            rooms.splice(rid,1); // remove room
+            socket.emit('game stop successful');
+            io.to(gameID).emit('game stopped');
+          }
+        }
+      }
+    }
+    console.log("game stopped in room " + gameID.toString());
   });
   
   socket.on('disconnect', function(){
@@ -106,7 +143,7 @@ io.on('connection', function(socket){
       }
     }
   });
-  
+    
 });
 
 http.listen(3000, function(){

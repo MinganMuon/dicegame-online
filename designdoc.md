@@ -11,9 +11,9 @@ client connects
     client who made the game has a start game button
   when game starts
     clear screen
-    FOR TESTING: show game id (and stop game button for client who made the game)
+    FOR TESTING: show game title (and stop game button for client who made the game)
   when game stops
-    go back to title screen (may need to force a refresh to do this)
+    go back to title screen
 
 ## server side
 when client connects
@@ -27,7 +27,7 @@ when client connects
     broadcast to whole room the updated number of players
   when game starts
     tell room game is starting
-    FOR TESTING: broadcast to whole room game id
+    FOR TESTING: broadcast to whole room game title
   when client who made game wants to stop game
     broadcast to whole room that game is stopping
     remove all players from room

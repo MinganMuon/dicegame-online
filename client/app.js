@@ -1,15 +1,12 @@
 var socket = io();
 
 $(document).ready(function(){
+  var App;
   var ishost = false;
-  var numinroom = 0;
-  var roomnum = 0;
   
   socket.on('number in room', function(numroom, roomno) {
-    numinroom = numroom;
-    roomnum = roomno;
-    $('span#numberofplayers').text(numinroom.toString());
-    $('span#roomno-wait').text(roomnum.toString());
+    $('span#numberofplayers').text(numroom.toString());
+    $('span#roomno-wait').text(roomno.toString());
   });
   
   socket.on('make successful', function(roomno) {
@@ -18,6 +15,8 @@ $(document).ready(function(){
     // just in case the first numroom update is received too fast
     $('span#numberofplayers').text('1');
     $('span#roomno-wait').text(roomno.toString());
+    // enable start game button
+    $('#btnStartGame').disabled = false;
   });
   
   socket.on('join successful', function(roomno,numroom) {
@@ -30,11 +29,46 @@ $(document).ready(function(){
     $('#btnStartGame').disabled = true;
   });
   
-  var App = {
+  socket.on('game start successful', function() {
+    console.log("game start successful");
+  });
+  
+  socket.on('game stop successful', function() {
+    console.log("game stop successful");
+  });
+  
+  socket.on('game started', function() {
+    console.log("game started");
+    $('#gameArea').html($('#start-screen-template').html());
+    if (ishost) {
+      $('#btnStopGame').disabled = false;
+    } else {
+      $('#btnStopGame').disabled = true;
+    }
+  });
+  
+  socket.on('game stopped', function() {
+    console.log("game stopped");
+    App.showintroscreen();
+  });
+  
+  socket.on('game-title', function(title) {
+    $('span#game-title').text(title);
+  });
+  
+  App = {
     init: function(){
+      App.bindbuttons();
+      App.showintroscreen();
+    },
+    
+    bindbuttons: function(){
       $(document).on('click', '#btnIntroMakeGame', App.onIntroMakeGameClick);
       $(document).on('click', '#btnIntroJoinGame', App.onIntroJoinGameClick);
-      App.showintroscreen();
+      $(document).on('click', '#btnMakeGame', App.onMakeGameClick);
+      $(document).on('click', '#btnJoinGame', App.onJoinGameClick);
+      $(document).on('click', '#btnStartGame', App.onStartGameClick);
+      $(document).on('click', '#btnStopGame', App.onStopGameClick);
     },
     
     onIntroMakeGameClick: function(){
@@ -52,13 +86,11 @@ $(document).ready(function(){
     
     showmakegamescreen: function(){
       $('#gameArea').html($('#make-game-template').html());
-      $(document).on('click', '#btnMakeGame', App.onMakeGameClick);
       console.log("showed make game screen");
     },
     
     showjoingamescreen: function(){
       $('#gameArea').html($('#join-game-template').html());
-      $(document).on('click', '#btnJoinGame', App.onJoinGameClick);
       console.log("showed join game screen");
     },
     
@@ -70,6 +102,16 @@ $(document).ready(function(){
     onJoinGameClick: function(){
       socket.emit('joinGame', $('#name-input').val(), parseInt($('#gameid-input').val()));
       console.log('put request in for joinGame');
+    },
+    
+    onStartGameClick: function(){
+      socket.emit('startGame');
+      console.log('put request in for startGame');
+    },
+    
+    onStopGameClick: function(){
+      socket.emit('stopGame');
+      console.log('put request in for stopGame');
     },
   };
   
