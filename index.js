@@ -115,9 +115,12 @@ io.on('connection', function(socket){
             // room has been created, game has started, user is in room, user is host
             // now stop the game
             rooms[rid].started = false; // is this line really needed?
-            rooms.splice(rid,1); // remove room
             socket.emit('game stop successful');
             io.to(gameID).emit('game stopped');
+            for (var i=0; i < rooms[rid].users.length; i++) { // make all clients leave room
+              io.sockets.connected[rooms[rid].users[i].id].leave(gameID);
+            }
+            rooms.splice(rid,1); // remove room
           }
         }
       }
