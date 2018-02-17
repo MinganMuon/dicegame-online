@@ -1,0 +1,16 @@
+.button1 {
+    background-color: #66a8b9;
+    border: none;
+    color: white;
+    margin: 15px 5px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #66a8b9;
+}
+
+div {
+    margin: 15px 5px;
+}
