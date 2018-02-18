@@ -2,7 +2,7 @@
     background-color: #66a8b9;
     border: none;
     color: white;
-    margin: 15px 5px;
+    margin: 0;
     padding: 5px 10px;
     text-align: center;
 }
@@ -12,5 +12,43 @@ h1 {
 }
 
 div {
-    margin: 15px 5px;
+    margin: 0.85vw 0.85vw;
+}
+
+body {
+  margin:0;
+  padding:0;
+}
+
+.tile-div {
+  --hw: 7.4vw;
+  height: var(--hw);
+  width: var(--hw);
+  font-size: var(--hw);
+  text-align: center;
+  vertical-align: middle;
+  line-height: var(--hw);
+  margin: 0.4vw 0.4vw;
+}
+
+.tile-div[data-color='red'] {
+  background-color: #CC0000;
+}
+
+.tile-div[data-color='yellow'] {
+  background-color: #FFCC33;
+}
+
+.tile-div[data-color='green'] {
+  background-color: #339933;
+}
+
+.tile-div[data-color='blue'] {
+  background-color: #003399;
+}
+
+.board-div {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0vw 0vw;
 }

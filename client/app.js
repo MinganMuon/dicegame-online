@@ -45,6 +45,7 @@ $(document).ready(function(){
     } else {
       $('#btnStopGame').disabled = true;
     }
+    $('#gameArea').append(genboardhtml(function(){ }));
   });
   
   socket.on('game stopped', function() {
