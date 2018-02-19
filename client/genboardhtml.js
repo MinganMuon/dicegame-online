@@ -48,3 +48,30 @@ function genboardhtml(clickhandler) {
   
   return bh;
 }
+
+function genpboxshtml(clickhandler) {
+    var pbh = $("<div id='pboxs-div'></div>").addClass("pboxs-div");
+    for (i = 0; i < 4; i++){
+      var bt = $("<div></div>");
+      bt.addClass("pbox-div");
+      bt.addClass("unselectable");
+      bt.attr("data-number", i);
+      bt.on('click', clickhandler);
+      pbh.append(bt);
+    }
+    return pbh;
+}
+
+function genboardareahtml(tileclickhandler, pboxclickhandler){
+      var bah = $("<div id='boardarea-div'></div>").addClass("boardarea-div");
+      bah.append(genboardhtml(tileclickhandler));
+      var bla = $("<div id='boardlowerarea-div'></div>").addClass("boardlowerarea-div");
+      bla.append(genpboxshtml(pboxclickhandler));
+      bah.append(bla);
+      return bah;
+}
+
+
+
+
+

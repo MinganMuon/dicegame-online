@@ -65,6 +65,18 @@ body {
   background-color: #003399;
 }
 
+.boardarea-div {
+  margin: 0vw 0vw;
+  padding: 0;
+}
+
+.boardlowerarea-div {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  margin: 0vw 0vw;
+  padding: 0;
+}
+
 .board-div {
   display: grid;
   grid-template-columns: repeat(1), 1fr);
@@ -111,3 +123,26 @@ body {
   background: var(--cross1), var(--cross2);
 }
 
+.pboxs-div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0vw 0vw;
+  padding: 0;
+  position: relative;
+}
+
+.pbox-div {
+  --hw: 5.9vw;
+  height: var(--hw);
+  width: var(--hw);
+  font-size: calc(var(--hw) - 0.5vw);
+  text-align: center;
+  vertical-align: middle;
+  line-height: var(--hw);
+  margin: 0.4vw 0.4vw;
+  padding: 0;
+  border: .75vw solid black;
+  position: relative;
+  overflow: hidden;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}

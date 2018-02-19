@@ -48,6 +48,20 @@ $(document).ready(function(){
     }
   }
   
+  pboxclick = function(){
+      var psofar = theboard.penalties;
+      var num = parseInt($(this).attr('data-number')) + 1; // because num = 0 means the first pbox
+      if (num == psofar + 1) {
+          // check it!
+          $(this).addClass('cross');
+          theboard.penalties = theboard.penalties + 1;
+      } else if (num == psofar) {
+          // uncheck it!
+          $(this).removeClass('cross');
+          theboard.penalties = theboard.penalties - 1;
+      }
+  }
+  
   socket.on('number in room', function(numroom, roomno) {
     $('span#numberofplayers').text(numroom.toString());
     $('span#roomno-wait').text(roomno.toString());
@@ -90,7 +104,7 @@ $(document).ready(function(){
       $('#btnStopGame').disabled = true;
     }
     theboard = new board();
-    $('#gameArea').append(genboardhtml(tileclick));
+    $('#gameArea').append(genboardareahtml(tileclick, pboxclick));
   });
   
   socket.on('game stopped', function() {
