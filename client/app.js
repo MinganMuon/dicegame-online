@@ -3,6 +3,23 @@ var socket = io();
 $(document).ready(function(){
   var App;
   var ishost = false;
+  var theboard;
+  
+  tileclick = function(){
+    row = parseInt($(this).attr('data-row'));
+    num = parseInt($(this).attr('data-number'));
+    if (num === 13) {
+      // lock tile
+    } else {
+      if (theboard.rows[row].nums[num] === true) {
+        theboard.rows[row].nums[num] = false;
+        // check tile...
+      } else {
+        theboard.rows[row].nums[num] = true;
+        // uncheck tile...
+      }
+    }
+  }
   
   socket.on('number in room', function(numroom, roomno) {
     $('span#numberofplayers').text(numroom.toString());
@@ -45,7 +62,8 @@ $(document).ready(function(){
     } else {
       $('#btnStopGame').disabled = true;
     }
-    $('#gameArea').append(genboardhtml(function(){ }));
+    theboard = new board();
+    $('#gameArea').append(genboardhtml(tileclick));
   });
   
   socket.on('game stopped', function() {

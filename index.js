@@ -95,7 +95,7 @@ io.on('connection', function(socket){
             socket.emit('game start successful');
             io.to(gameID).emit('game started');
             // "game logic"
-            io.to(gameID).emit('game-title', 'THIS IS THE GAME');
+            io.to(gameID).emit('game-title', 'Room ' + gameID);
           }
         }
       }

@@ -2,16 +2,21 @@
     background-color: #66a8b9;
     border: none;
     color: white;
-    margin: 0;
+    margin-right: 5px;
+    margin-top: 10px;
     padding: 5px 10px;
     text-align: center;
 }
 
-h1 {
+h1, h2 {
     color: #66a8b9;
 }
 
-div {
+h2 {
+    margin: 0;
+}
+
+.titleWrapper {
     margin: 0.85vw 0.85vw;
 }
 
@@ -29,6 +34,18 @@ body {
   vertical-align: middle;
   line-height: var(--hw);
   margin: 0.4vw 0.4vw;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tile-div[data-color='red'] {
@@ -51,4 +68,7 @@ body {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   margin: 0vw 0vw;
+  padding: 0;
 }
+
+
