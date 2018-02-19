@@ -5,6 +5,19 @@ $(document).ready(function(){
   var ishost = false;
   var theboard;
   
+  numtocolor = function(num){
+    switch (num) {
+      case 0: 
+        return "red";
+      case 1:
+        return "yellow";
+      case 2:
+        return "green";
+      case 3:
+        return "blue";
+    }
+  }
+  
   tileclick = function(){
     row = parseInt($(this).attr('data-row'));
     num = parseInt($(this).attr('data-number'));
@@ -12,16 +25,16 @@ $(document).ready(function(){
       // lock tile
       if (theboard.rows[row].rowlocked === true) {
           theboard.rows[row].rowlocked = false;
-          $(this).removeClass('crosslined');
-          $(this).addClass('lined');
+          $(this).removeClass('cross');
       } else { 
           if (theboard.rows[row].rowlined === true) {
               theboard.rows[row].rowlined = false;
-              $(this).removeClass('lined');
+              $('#' + numtocolor(row) + '-div').removeClass('linerow');
           } else {
               theboard.rows[row].rowlocked = true;
               theboard.rows[row].rowlined = true;
-              $(this).addClass('crosslined');
+              $(this).addClass('cross');
+              $('#' + numtocolor(row) + '-div').addClass('linerow');
           }
       }
     } else {
