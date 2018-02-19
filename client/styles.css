@@ -71,4 +71,42 @@ body {
   padding: 0;
 }
 
+.cross, .lined, .crosslined {
+  --cross1: linear-gradient(to top left,
+           rgba(0,0,0,0) 0%,
+           rgba(0,0,0,0) 46%,
+           rgba(0,0,0,1) 47%,
+           rgba(0,0,0,1) 50%,
+           rgba(0,0,0,1) 53%,
+           rgba(0,0,0,0) 54%,
+           rgba(0,0,0,0) 100%);
+  --cross2: linear-gradient(to top right,
+           rgba(0,0,0,0) 0%,
+           rgba(0,0,0,0) 46%,
+           rgba(0,0,0,1) 47%,
+           rgba(0,0,0,1) 50%,
+           rgba(0,0,0,1) 53%,
+           rgba(0,0,0,0) 54%,
+           rgba(0,0,0,0) 100%);
+  --line: linear-gradient(to top,
+           rgba(0,0,0,0) 0%,
+           rgba(0,0,0,0) 44%,
+           rgba(0,0,0,1) 45%,
+           rgba(0,0,0,1) 50%,
+           rgba(0,0,0,1) 55%,
+           rgba(0,0,0,0) 56%,
+           rgba(0,0,0,0) 100%);
+}
+
+.cross {
+    background: var(--cross1), var(--cross2);
+}
+
+.lined {
+    background: var(--line);
+}
+
+.crosslined {
+    background: var(--cross1), var(--cross2), var(--line);
+}
 

@@ -10,13 +10,27 @@ $(document).ready(function(){
     num = parseInt($(this).attr('data-number'));
     if (num === 13) {
       // lock tile
+      if (theboard.rows[row].rowlocked === true) {
+          theboard.rows[row].rowlocked = false;
+          $(this).removeClass('crosslined');
+          $(this).addClass('lined');
+      } else { 
+          if (theboard.rows[row].rowlined === true) {
+              theboard.rows[row].rowlined = false;
+              $(this).removeClass('lined');
+          } else {
+              theboard.rows[row].rowlocked = true;
+              theboard.rows[row].rowlined = true;
+              $(this).addClass('crosslined');
+          }
+      }
     } else {
       if (theboard.rows[row].nums[num] === true) {
         theboard.rows[row].nums[num] = false;
-        // check tile...
+        $(this).removeClass('cross');
       } else {
         theboard.rows[row].nums[num] = true;
-        // uncheck tile...
+        $(this).addClass('cross');
       }
     }
   }
