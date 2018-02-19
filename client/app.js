@@ -19,8 +19,8 @@ $(document).ready(function(){
   }
   
   tileclick = function(){
-    row = parseInt($(this).attr('data-row'));
-    num = parseInt($(this).attr('data-number'));
+    var row = parseInt($(this).attr('data-row'));
+    var num = parseInt($(this).attr('data-number'));
     if (num === 13) {
       // lock tile
       if (theboard.rows[row].rowlocked === true) {
