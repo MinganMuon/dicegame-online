@@ -25,6 +25,18 @@
     border: 0;
 }
 
+.scorearea-div {
+  --hw: 7.4vw;
+  height: var(--hw);
+  margin: 0.4vw 0.4vw;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: calc((var(--hw) - 2vw));
+  text-align: center;
+  vertical-align: middle;
+}
+
 h1, h2 {
     color: #66a8b9;
 }

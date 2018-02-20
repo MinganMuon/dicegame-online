@@ -5,6 +5,10 @@ $(document).ready(function(){
   var ishost = false;
   var theboard;
   
+  updatescore = function(){
+    $('#scorearea-div').html('You: ' + theboard.scoreboard().toString());
+  }
+  
   numtocolor = function(num){
     switch (num) {
       case 0: 
@@ -46,6 +50,7 @@ $(document).ready(function(){
         $(this).addClass('cross');
       }
     }
+    updatescore();
   }
   
   pboxclick = function(){
@@ -60,6 +65,7 @@ $(document).ready(function(){
           $(this).removeClass('cross');
           theboard.penalties = theboard.penalties - 1;
       }
+      updatescore();
   }
   
   socket.on('number in room', function(numroom, roomno) {
