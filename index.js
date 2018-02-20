@@ -11,16 +11,42 @@ app.get('/', function(req, res) {
 });
 
 var numUsers = 0;
-var rooms = []; // roomID, users [{id, name, host?}], started?
+var rooms = []; // roomID, users [{id, name, host?, score}], started?
 
 getnuminroom = function(reqroomID){
-  rid = rooms.findIndex(o => o.roomID === reqroomID);
+  var rid = rooms.findIndex(o => o.roomID === reqroomID);
   return rooms[rid].users.length;
 };
+
+sendoutscores = function(theroomID){
+  var rid = rooms.findIndex(o => o.roomID === gameID);
+  if (rid !== -1) {
+    var thescores = [];
+    for (var i=0; i < rooms[rid].users.length; i++) { 
+      thescores.push({user: rooms[rid].users[i].name, score: rooms[rid].users[i].score});
+    }
+    io.to(gameID).emit('scores', thescores);
+  }
+}
 
 io.on('connection', function(socket){
   numUsers++;
   console.log(numUsers + " online");
+  
+  socket.on('gotscore', function(newscore){
+    var gameID = parseInt(Object.keys(socket.rooms).filter(item => item != socket.id)[0]);
+    var rid = rooms.findIndex(o => o.roomID === gameID);
+    if (rid !== -1) {
+      if (rooms[rid].started) {
+        var uid = rooms[rid].users.findIndex(o => o.id === socket.id);
+        if (uid !== -1) {
+          // room exists, game started, user exists
+          rooms[rid].users[uid].score = newscore;
+          sendoutscores(gameID);
+        }
+      }
+    }
+  });
   
   socket.on('makeGame', function(givenname){
     console.log('received request for makeGame');
@@ -37,7 +63,7 @@ io.on('connection', function(socket){
     // make room
     rooms.push({
       roomID: newroomid,
-      users: [{id: socket.id, name: givenname, host: true}],
+      users: [{id: socket.id, name: givenname, host: true, score: 0}],
       started: false
     });
     // join room
@@ -63,7 +89,8 @@ io.on('connection', function(socket){
         rooms[rid].users.push({
           id: socket.id,
           name: givenname,
-          host: false
+          host: false,
+          score: 0
         });
         socket.join(gameID);
         let numberinroom = getnuminroom(gameID);
@@ -94,7 +121,6 @@ io.on('connection', function(socket){
             rooms[rid].started = true;
             socket.emit('game start successful');
             io.to(gameID).emit('game started');
-            // "game logic"
             io.to(gameID).emit('game-title', 'Room ' + gameID);
           }
         }

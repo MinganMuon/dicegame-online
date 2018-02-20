@@ -6,7 +6,16 @@ $(document).ready(function(){
   var theboard;
   
   updatescore = function(){
-    $('#scorearea-div').html('You: ' + theboard.scoreboard().toString());
+    // $('#scorearea-div').html('You: ' + theboard.scoreboard().toString());
+    socket.emit('gotscore', theboard.scoreboard());
+  }
+  
+  displayscores = function(thescores){
+    var scoretext = "";
+    for (i=0; i < thescores.length; i++) {
+      scoretext = scoretext + " " + thescores[i].user + ": " + thescores[i].score.toString();
+    }
+    $('#scorearea-div').html(scoretext);
   }
   
   numtocolor = function(num){
@@ -120,6 +129,10 @@ $(document).ready(function(){
   
   socket.on('game-title', function(title) {
     $('span#game-title').text(title);
+  });
+  
+  socket.on('scores', function(thescores) {
+    displayscores(thescores);
   });
   
   App = {
