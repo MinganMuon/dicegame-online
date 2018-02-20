@@ -64,9 +64,12 @@ function genpboxshtml(clickhandler) {
 
 function genboardareahtml(tileclickhandler, pboxclickhandler){
       var bah = $("<div id='boardarea-div'></div>").addClass("boardarea-div");
+      // board
       bah.append(genboardhtml(tileclickhandler));
+      // area under board
       var bla = $("<div id='boardlowerarea-div'></div>").addClass("boardlowerarea-div");
       bla.append(genpboxshtml(pboxclickhandler));
+      bla.append($("<div class='stopbutton-div'><button class='stopbutton' id='btnStopGame'>Stop the<br/>game</button></div>"));
       bah.append(bla);
       return bah;
 }

@@ -8,6 +8,23 @@
     text-align: center;
 }
 
+.stopbutton {
+    background-color: #66a8b9;
+    border: none;
+    color: white;
+    --hw: 7.4vw;
+    height: var(--hw);
+    width: var(--hw);
+    font-size: calc((var(--hw) - 0.5vw)/5);
+    text-align: center;
+    vertical-align: middle;
+    margin: 0.4vw 0.4vw;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border: 0;
+}
+
 h1, h2 {
     color: #66a8b9;
 }
@@ -37,7 +54,7 @@ body {
   padding: 0;
   position: relative;
   overflow: hidden;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Kavivanar", cursive, sans-serif;
 }
 
 .unselectable {
@@ -72,7 +89,7 @@ body {
 
 .boardlowerarea-div {
   display: grid;
-  grid-template-columns: 4fr 8fr;
+  grid-template-columns: 4fr 7fr 1fr;
   margin: 0vw 0vw;
   padding: 0;
 }
@@ -144,5 +161,4 @@ body {
   border: .75vw solid black;
   position: relative;
   overflow: hidden;
-  font-family: "Comic Sans MS", cursive, sans-serif;
 }
