@@ -28,13 +28,18 @@
 .scorearea-div {
   --hw: 7.4vw;
   height: var(--hw);
+  max-height: var(--hw);
   margin: 0.4vw 0.4vw;
   padding: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
   font-size: calc((var(--hw) - 2vw));
   text-align: center;
   vertical-align: middle;
+    width: auto;
+    min-width: 100px; 
+    overflow-x:scroll;   
+    position: relative;
 }
 
 h1, h2 {
@@ -43,6 +48,16 @@ h1, h2 {
 
 h2 {
     margin: 0;
+}
+
+.gameinfo-h2 {
+  --hw: 3vw;
+  height: var(--hw);
+  max-height: var(--hw);
+  text-align:center;
+  width: 100%;
+      overflow-x: scroll;
+      overflow-y: scroll;
 }
 
 .titleWrapper {

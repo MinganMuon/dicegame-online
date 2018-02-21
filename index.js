@@ -169,6 +169,7 @@ io.on('connection', function(socket){
         io.to(rooms[i].roomID).emit('number in room', rooms[i].users.length, rooms[i].roomID);
         // logging
         console.log(uname + ' left room ' + rooms[i].roomID);
+        // TODO: if the host leaves another user should take over the role of host
       }
     }
   });

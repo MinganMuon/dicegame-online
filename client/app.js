@@ -12,10 +12,28 @@ $(document).ready(function(){
   
   displayscores = function(thescores){
     var scoretext = "";
+    var userstext = "";
     for (i=0; i < thescores.length; i++) {
       scoretext = scoretext + " " + thescores[i].user + ": " + thescores[i].score.toString();
+      if (i === thescores.length - 1) {
+        // if this is the last one in the list
+        if (i === 0) {
+          // if this is the only one
+          userstext = userstext +" " + thescores[i].user;
+        } else {
+          userstext = userstext + " and " + thescores[i].user;
+        }
+      } else {
+        if (i === thescores.length - 2 && thescores.length === 2) {
+          // if the second to last one in the list and there's only two
+          userstext = userstext + " " + thescores[i].user;
+        } else {
+          userstext = userstext + " " + thescores[i].user + ","; 
+        }
+      }
     }
     $('#scorearea-div').html(scoretext);
+    $('#users-in-room').html(userstext);
   }
   
   numtocolor = function(num){
@@ -90,6 +108,7 @@ $(document).ready(function(){
     $('span#roomno-wait').text(roomno.toString());
     // enable start game button
     $('#btnStartGame').disabled = false;
+    $('#btnStartGame').css("visibility", "visible");
   });
   
   socket.on('join successful', function(roomno,numroom) {
@@ -100,6 +119,7 @@ $(document).ready(function(){
     $('span#roomno-wait').text(roomno.toString());
     // disable start game button
     $('#btnStartGame').disabled = true;
+    $('#btnStartGame').css("visibility", "hidden");
   });
   
   socket.on('game start successful', function() {
@@ -113,13 +133,15 @@ $(document).ready(function(){
   socket.on('game started', function() {
     console.log("game started");
     $('#gameArea').html($('#start-screen-template').html());
-    if (ishost) {
-      $('#btnStopGame').disabled = false;
-    } else {
-      $('#btnStopGame').disabled = true;
-    }
     theboard = new board();
     $('#gameArea').append(genboardareahtml(tileclick, pboxclick));
+    if (ishost) {
+      $('#btnStopGame').disabled = false;
+      $('#btnStopGame').css("visibility", "visible");
+    } else {
+      $('#btnStopGame').disabled = true;
+      $('#btnStopGame').css("visibility", "hidden");
+    }
   });
   
   socket.on('game stopped', function() {
