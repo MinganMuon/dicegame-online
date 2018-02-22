@@ -39,15 +39,15 @@
   max-height: var(--hw);
   margin: 0.4vw 0.4vw;
   padding: 0;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  font-size: calc((var(--hw) - 2vw));
+  overflow-x: auto;
+  overflow-y: auto;
+  font-size: calc((var(--hw) - 2.3vw));
   text-align: center;
   vertical-align: middle;
     width: auto;
     min-width: 100px; 
-    overflow-x:scroll;   
     position: relative;
+    white-space: nowrap;
 }
 
 .name-input-make, .name-input-join, .gameid-input {
@@ -113,9 +113,12 @@ div {
   height: var(--hw);
   max-height: var(--hw);
   text-align:center;
-  width: 100%;
-      overflow-x: scroll;
-      overflow-y: scroll;
+  white-space: nowrap;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  margin-left: 0.4vw;
+  width: 97vw;
+      overflow-x: auto;
 }
 
 body {
