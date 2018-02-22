@@ -14,12 +14,12 @@
         <div class="titleWrapper">
 
             <div class="title">
-                <h1>Dice game</h1>
+                <h1 class="title-h1">Dice game</h1>
             </div>
 
             <div class="buttons">
-                <button class="button1" id="btnIntroMakeGame">Make new game</button>
-                <button class="button1" id="btnIntroJoinGame">Join existing game</button>
+                <button class="button1 menubtn" id="btnIntroMakeGame">Make new game</button>
+                <button class="button1 menubtn" id="btnIntroJoinGame">Join existing game</button>
             </div>
 
         </div>
@@ -29,15 +29,15 @@
         <div class="titleWrapper">
 
             <div class="title">
-              <h1>Make a new game</h1>
+              <h1 class="title-h1">Make a new game</h1>
             </div>
             
-            <div class="inputs">
-              Name: <input id="name-input" type="text">
+            <div class="inputs-make">
+              <input class="name-input-make" id="name-input" type="text" placeholder="Name">
             </div>
             
             <div class="buttons">
-              <button class="button1" id="btnMakeGame">Make new game</button>
+              <button class="button1 menubtn" id="btnMakeGame">Make new game</button>
             </div>
 
         </div>
@@ -47,17 +47,16 @@
         <div class="titleWrapper">
 
             <div class="title">
-              <h1>Join an existing game</h1>
+              <h1 class="title-h1">Join an existing game</h1>
             </div>
             
-            <div class="inputs">
-              Name: <input id="name-input" type="text">
-              <br>
-              Room number: <input id="gameid-input" type="text">
+            <div class="inputs-join">
+              <input class="name-input-join" id="name-input" type="text" placeholder="Name">
+              <input class="gameid-input" id="gameid-input" type="text" placeholder="Room Number">
             </div>
             
             <div class="buttons">
-              <button class="button1" id="btnJoinGame">Join game</button>
+              <button class="button1 menubtn" id="btnJoinGame">Join game</button>
             </div>
 
         </div>
@@ -67,7 +66,7 @@
         <div class="titleWrapper">
 
             <div class="title">
-                <h1>Room <span id="roomno-wait">0</p></h1>
+                <h1 class="title-h1">Room <span id="roomno-wait">0</p></h1>
             </div>
             
             <div class="numberofplayers">
@@ -75,7 +74,7 @@
             </div>
 
             <div class="buttons">
-                <button class="button1" id="btnStartGame">Start the game</button>
+                <button class="button1 menubtn" id="btnStartGame">Start the game</button>
             </div>
 
         </div>

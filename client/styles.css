@@ -8,6 +8,14 @@
     text-align: center;
 }
 
+.menubtn {
+    margin:0 5vw 5vw 5vw;
+    width: 90vw;
+    height: 20vh;
+    font-size: 10vh;
+    padding: 0;
+}
+
 .stopbutton {
     background-color: #66a8b9;
     border: none;
@@ -42,12 +50,62 @@
     position: relative;
 }
 
-h1, h2 {
+.name-input-make, .name-input-join, .gameid-input {
+    text-align: center;
+    margin: 0 5vw 5vw 5vw;
+    padding: 0;
+    color: #66a8b9;
+    border: 2px solid #66a8b9;
+    border-radius: 7px;
+}
+
+.name-input-make {
+    width: 90vw;
+    height: 20vh;
+    font-size: 10vh;
+}
+
+.name-input-join, .gameid-input {
+    width: 90vw;
+    height: 13vh;
+    font-size: 7vh;
+    margin: 0 5vw 2vw 5vw;
+}
+
+::placeholder {
+    color: #66a8b9;
+    opacity: 1;
+}
+
+.numberofplayers {
+    width: 90vw;
+    height: 20vh;
+    font-size: 10vh;
+    text-align: center;
+    margin: 0 5vw 5vw 5vw;
+    padding: 0;
+    color: #66a8b9;
+}
+
+h1, h2, .inputs-make {
     color: #66a8b9;
 }
 
 h2 {
     margin: 0;
+}
+
+div {
+  margin: 0;
+}
+
+.title-h1 {
+    width: 100vw;
+    height: 20vh;
+    font-size: 15vh;
+    text-align: center;
+    margin: 0 0 5vw 0;
+    padding: 0;
 }
 
 .gameinfo-h2 {
@@ -60,13 +118,15 @@ h2 {
       overflow-y: scroll;
 }
 
-.titleWrapper {
-    margin: 0.85vw 0.85vw;
-}
-
 body {
   margin:0;
   padding:0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tile-div {

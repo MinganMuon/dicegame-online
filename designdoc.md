@@ -1,34 +1,9 @@
-# Design and brainstorming
+# Todo
 
-## client side
-client connects
-  displays title, choice to join or make a game
-  if join
-    new view - two fields, name and game id, and join game button
-  if make
-    new view - one field, name, and create game button
-  once joined/made a game, show stats on game id and names of players joined
-    client who made the game has a start game button
-  when game starts
-    clear screen
-    FOR TESTING: show game title (and stop game button for client who made the game)
-  when game stops
-    go back to title screen
+long - server should re-assign a host to a game when the previous host disconnects and the new host client should reflect that change (buttons, etc.)
 
-## server side
-when client connects
-  when client wants to make a game
-    create new room with a random room id
-    add client to room with given name
-  when client wants to join a game (room)
-    if room exists and game has not already started
-      add client to given room with given name
-  tell client join/make was successful
-    broadcast to whole room the updated number of players
-  when game starts
-    tell room game is starting
-    FOR TESTING: broadcast to whole room game title
-  when client who made game wants to stop game
-    broadcast to whole room that game is stopping
-    remove all players from room
-    delete room
+short - client user list and score text should somehow mark who the user is in case the user forgot what name they used
+
+? - force user list and score text to only scroll/display on one long line
+
+? - fit board screen on one phone screen
