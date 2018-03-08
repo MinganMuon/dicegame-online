@@ -9,5 +9,3 @@ long - server should re-assign a host to a game when the previous host disconnec
     - maybe adjust the css proportions to take into account screen height and not just width
 
 ? - rework css code to remove bloat
-
-short - user list should be shown when the boardarea loads

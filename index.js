@@ -122,11 +122,12 @@ io.on('connection', function(socket){
             socket.emit('game start successful');
             io.to(gameID).emit('game started');
             io.to(gameID).emit('game-title', 'Room ' + gameID);
+            sendoutscores(gameID);
+            console.log("game started in room " + gameID.toString());
           }
         }
       }
     }
-    console.log("game started in room " + gameID.toString());
   });
   
   socket.on('stopGame', function(){
