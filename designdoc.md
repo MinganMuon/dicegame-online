@@ -10,4 +10,4 @@ long - server should re-assign a host to a game when the previous host disconnec
 
 ? - rework css code to remove bloat
 
-short - phone keyboard for the join room number input box should be a numeric keypad
+short - user list should be shown when the boardarea loads
