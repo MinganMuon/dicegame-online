@@ -4,6 +4,7 @@ $(document).ready(function(){
   var App;
   var ishost = false;
   var theboard;
+  var clientusername = "";
   
   updatescore = function(){
     // $('#scorearea-div').html('You: ' + theboard.scoreboard().toString());
@@ -14,21 +15,31 @@ $(document).ready(function(){
     var scoretext = "";
     var userstext = "";
     for (i=0; i < thescores.length; i++) {
-      scoretext = scoretext + " " + thescores[i].user + ": " + thescores[i].score.toString();
+      if (thescores[i].user === clientusername) {
+        scoretext = scoretext + "  " + thescores[i].user + " (you): " + thescores[i].score.toString();
+      } else {
+        scoretext = scoretext + "  " + thescores[i].user + ": " + thescores[i].score.toString();
+      }
+      var nametodisplay;
+      if (thescores[i].user === clientusername) {
+        nametodisplay = thescores[i].user + " (you)"
+      } else {
+        nametodisplay = thescores[i].user;
+      }
       if (i === thescores.length - 1) {
         // if this is the last one in the list
         if (i === 0) {
           // if this is the only one
-          userstext = userstext +" " + thescores[i].user;
+          userstext = userstext +" " + nametodisplay;
         } else {
-          userstext = userstext + " and " + thescores[i].user;
+          userstext = userstext + " and " + nametodisplay;
         }
       } else {
         if (i === thescores.length - 2 && thescores.length === 2) {
           // if the second to last one in the list and there's only two
-          userstext = userstext + " " + thescores[i].user;
+          userstext = userstext + " " + nametodisplay;
         } else {
-          userstext = userstext + " " + thescores[i].user + ","; 
+          userstext = userstext + " " + nametodisplay + ","; 
         }
       }
     }
@@ -197,11 +208,13 @@ $(document).ready(function(){
     
     onMakeGameClick: function(){
       socket.emit('makeGame', $('#name-input').val());
+      clientusername = $('#name-input').val();
       console.log('put request in for makeGame');
     },
     
     onJoinGameClick: function(){
       socket.emit('joinGame', $('#name-input').val(), parseInt($('#gameid-input').val()));
+      clientusername = $('#name-input').val();
       console.log('put request in for joinGame');
     },
     
