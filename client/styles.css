@@ -239,3 +239,16 @@ body {
   position: relative;
   overflow: hidden;
 }
+
+.bad-orient-div {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 5vh;
+  padding: 0;
+  position:absolute;
+  top: 0px;
+  background: #66a8b9;
+}
+

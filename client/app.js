@@ -147,6 +147,20 @@ $(document).ready(function(){
     init: function(){
       App.bindbuttons();
       App.showintroscreen();
+      window.onresize = App.onresizeHandler;
+      App.onresizeHandler();
+    },
+    
+    onresizeHandler: function(){
+      if ( $(window).height() >= $(window).width() ) {
+        // bad
+        $(".bad-orient-div").remove();
+        var bscr = $("<div id='bad-orient'>Please rotate your device to landscape mode.</div>").addClass("bad-orient-div");
+        $('body').append(bscr);
+      } else {
+        // good
+        $(".bad-orient-div").remove();
+      }
     },
     
     bindbuttons: function(){
