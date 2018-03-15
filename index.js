@@ -19,13 +19,13 @@ getnuminroom = function(reqroomID){
 };
 
 sendoutscores = function(theroomID){
-  var rid = rooms.findIndex(o => o.roomID === gameID);
+  var rid = rooms.findIndex(o => o.roomID === theroomID);
   if (rid !== -1) {
     var thescores = [];
     for (var i=0; i < rooms[rid].users.length; i++) { 
       thescores.push({user: rooms[rid].users[i].name, score: rooms[rid].users[i].score});
     }
-    io.to(gameID).emit('scores', thescores);
+    io.to(theroomID).emit('scores', thescores);
   }
 }
 
