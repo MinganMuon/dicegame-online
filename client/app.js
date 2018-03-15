@@ -7,44 +7,19 @@ $(document).ready(function(){
   var clientusername = "";
   
   updatescore = function(){
-    // $('#scorearea-div').html('You: ' + theboard.scoreboard().toString());
     socket.emit('gotscore', theboard.scoreboard());
   }
   
   displayscores = function(thescores){
     var scoretext = "";
-    var userstext = "";
     for (i=0; i < thescores.length; i++) {
       if (thescores[i].user === clientusername) {
         scoretext = scoretext + "  " + thescores[i].user + " (you): " + thescores[i].score.toString();
       } else {
         scoretext = scoretext + "  " + thescores[i].user + ": " + thescores[i].score.toString();
       }
-      var nametodisplay;
-      if (thescores[i].user === clientusername) {
-        nametodisplay = thescores[i].user + " (you)"
-      } else {
-        nametodisplay = thescores[i].user;
-      }
-      if (i === thescores.length - 1) {
-        // if this is the last one in the list
-        if (i === 0) {
-          // if this is the only one
-          userstext = userstext +" " + nametodisplay;
-        } else {
-          userstext = userstext + " and " + nametodisplay;
-        }
-      } else {
-        if (i === thescores.length - 2 && thescores.length === 2) {
-          // if the second to last one in the list and there's only two
-          userstext = userstext + " " + nametodisplay;
-        } else {
-          userstext = userstext + " " + nametodisplay + ","; 
-        }
-      }
     }
     $('#scorearea-div').html(scoretext);
-    $('#users-in-room').html(userstext);
   }
   
   numtocolor = function(num){

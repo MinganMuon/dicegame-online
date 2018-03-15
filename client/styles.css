@@ -108,19 +108,6 @@ div {
     padding: 0;
 }
 
-.gameinfo-h2 {
-  --hw: 3vw;
-  height: var(--hw);
-  max-height: var(--hw);
-  text-align:center;
-  white-space: nowrap;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  margin-left: 0.4vw;
-  width: 97vw;
-      overflow-x: auto;
-}
-
 body {
   margin:0;
   padding:0;
