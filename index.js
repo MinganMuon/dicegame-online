@@ -130,29 +130,42 @@ io.on('connection', function(socket){
     }
   });
   
-  socket.on('stopGame', function(){
-    console.log("received request for stopGame");
-    gameID = parseInt(Object.keys(socket.rooms).filter(item => item != socket.id)[0]);
+  stopthegame = function(gameID, uid) {
     rid = rooms.findIndex(o => o.roomID === gameID);
     if (rid !== -1) {
       if (rooms[rid].started) {
-        uid = rooms[rid].users.findIndex(o => o.id === socket.id);
         if (uid !== -1) {
           if (rooms[rid].users[uid].host){
             // room has been created, game has started, user is in room, user is host
             // now stop the game
             rooms[rid].started = false; // is this line really needed?
-            socket.emit('game stop successful');
             io.to(gameID).emit('game stopped');
             for (var i=0; i < rooms[rid].users.length; i++) { // make all clients leave room
-              io.sockets.connected[rooms[rid].users[i].id].leave(gameID);
+              let possibleuser = io.sockets.connected[rooms[rid].users[i].id];
+              if (typeof possibleuser != 'undefined') {
+                possibleuser.leave(gameID);
+              } else {
+                // user doesn't exist anymore, so don't try to tell him to leave
+                // in most cases, he doesn't exist because he was the host and his disconnection prompted the call to this function
+              }
             }
             rooms.splice(rid,1); // remove room
+            console.log("game stopped in room " + gameID.toString());
+            return true;
           }
         }
       }
     }
-    console.log("game stopped in room " + gameID.toString());
+  }
+  
+  socket.on('stopGame', function(){
+    console.log("received request for stopGame");
+    gameID = parseInt(Object.keys(socket.rooms).filter(item => item != socket.id)[0]);
+    uid = rooms[rid].users.findIndex(o => o.id === socket.id);
+    var a = stopthegame(gameID, uid);
+    if (a === true) {
+      socket.emit('game stop successful');
+    }
   });
   
   socket.on('disconnect', function(){
@@ -165,12 +178,18 @@ io.on('connection', function(socket){
       if (uindex !== -1) {
         // the user was in a room
         uname = rooms[i].users[uindex].name;
-        rooms[i].users.splice(uindex,1); // remove user from rooms
-        // emit number of users in room to people in room
-        io.to(rooms[i].roomID).emit('number in room', rooms[i].users.length, rooms[i].roomID);
+        rmid = rooms[i].roomID;
+        if (rooms[i].users[uindex].host) {
+          // user is host, so we need to stop the game the user was hosting
+          stopthegame(rmid,uindex);
+        } else {
+          // user isn't host, so remove him from the room
+          rooms[i].users.splice(uindex,1);
+          // emit number of users in room to people in room
+          io.to(rooms[i].roomID).emit('number in room', rooms[i].users.length, rooms[i].roomID);
+        }
         // logging
-        console.log(uname + ' left room ' + rooms[i].roomID);
-        // TODO: if the host leaves another user should take over the role of host
+        console.log(uname + ' left room ' + rmid);
       }
     }
   });
