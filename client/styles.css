@@ -16,7 +16,7 @@
     padding: 0;
 }
 
-.stopbutton {
+.stopbutton, .switchbutton {
     background-color: #66a8b9;
     border: none;
     color: white;
@@ -159,14 +159,14 @@ body {
   background-color: #003399;
 }
 
-.boardarea-div {
+.boardarea-div, .switcharea-div {
   margin: 0vw 0vw;
   padding: 0;
 }
 
 .boardlowerarea-div {
   display: grid;
-  grid-template-columns: 4fr 7fr 1fr;
+  grid-template-columns: 4fr 1fr 6fr 1fr;
   margin: 0vw 0vw;
   padding: 0;
 }

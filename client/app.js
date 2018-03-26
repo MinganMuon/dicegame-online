@@ -81,6 +81,20 @@ $(document).ready(function(){
       updatescore();
   }
   
+  switchbtnclick = function() {
+    if ($('#btnSwitchScoreDice').html() === "Dice") {
+      // switch to dice
+      $('.switcharea-div').html($('#dice-template').html());
+      $('#btnSwitchScoreDice').html("Scores");
+    } else {
+      // switch to score
+      $('.switcharea-div').html($('#score-template').html());
+      $('#btnSwitchScoreDice').html("Dice");
+      // this forces the server to re-emit the scores so the score area can be updated
+      updatescore();
+    }
+  }
+  
   socket.on('number in room', function(numroom, roomno) {
     $('span#numberofplayers').text(numroom.toString());
     $('span#roomno-wait').text(roomno.toString());
