@@ -1,3 +1,6 @@
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 .button1 {
     background-color: #66a8b9;
     border: none;
