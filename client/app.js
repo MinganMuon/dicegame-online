@@ -95,6 +95,14 @@ $(document).ready(function(){
     }
   }
   
+  diceclick = function() {
+    var dielist = ["red-dice","yellow-dice","green-dice","blue-dice","white-dice1","white-dice2"];
+    for (var i = 0; i < dielist.length; i++) {
+        randomnumber = Math.floor(Math.random()*6) + 1;
+        $('#'+dielist[i]).html(randomnumber.toString());
+    }
+  }
+  
   socket.on('number in room', function(numroom, roomno) {
     $('span#numberofplayers').text(numroom.toString());
     $('span#roomno-wait').text(roomno.toString());

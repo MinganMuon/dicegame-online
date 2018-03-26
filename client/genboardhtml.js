@@ -69,13 +69,9 @@ function genboardareahtml(tileclickhandler, pboxclickhandler, switchclickhandler
       // area under board
       var bla = $("<div id='boardlowerarea-div'></div>").addClass("boardlowerarea-div");
       bla.append(genpboxshtml(pboxclickhandler));
-      bla.append($("<div class='switchbutton-div'><button class='switchbutton unselectable' id='btnSwitchScoreDice' onclick='switchbtnclick()'>Dice</button></div>"));
+      bla.append($("<div class='switchbutton-div'><button class='switchbutton unselectable' id='btnSwitchScoreDice' onclick='switchbtnclick()'>Scores</button></div>"));
       var bsa = $("<div id='switcharea-div'></div>").addClass("switcharea-div");
-      //var bscr = $("<div id='scorearea-div'></div>").addClass("scorearea-div");
-      //bscr.html("");
-      //bscr.addClass("unselectable");
-      //bsa.append(bscr);
-      bsa.html($('#score-template').html());
+      bsa.html($('#dice-template').html());
       bla.append(bsa);
       bla.append($("<div class='stopbutton-div'><button class='stopbutton unselectable' id='btnStopGame'>Stop the<br/>game</button></div>"));
       bah.append(bla);

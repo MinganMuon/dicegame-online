@@ -8,3 +8,7 @@
 ? - set page width/height to device window width/height to prevent unwanted scrolling
 
 ? - rework css code to remove bloat
+
+? - game runs slow on my phone - investigate this - may just be that my phone is slow
+
+? - ugly dotted line around buttons after they are clicked - fix this

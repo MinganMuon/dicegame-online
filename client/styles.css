@@ -50,6 +50,55 @@
     white-space: nowrap;
 }
 
+.dicearea-div {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin: 0vw 0vw;
+  padding: 0;
+  position: relative;
+}
+
+.dice-div {
+  --hw: 7.4vw;
+  height: var(--hw);
+  width: var(--hw);
+  font-size: calc(var(--hw) - 0.5vw);
+  text-align: center;
+  vertical-align: middle;
+  line-height: var(--hw);
+  margin: 0.4vw 0.4vw;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  font-family: "Kavivanar", cursive, sans-serif;
+}
+
+#red-dice{
+  background-color: #CC0000;
+}
+
+#yellow-dice {
+  background-color: #FFCC33;
+}
+
+#green-dice {
+  background-color: #339933;
+}
+
+#blue-dice {
+  background-color: #003399;
+}
+
+#white-dice1, #white-dice2 {
+  background-color: #FFFFFF;
+  --hw: 6.4vw;
+  height: var(--hw);
+  width: var(--hw);
+  font-size: calc(var(--hw) - 0.5vw);
+  line-height: var(--hw);
+  border: .50vw solid black;
+}
+
 .name-input-make, .name-input-join, .gameid-input {
     text-align: center;
     margin: 0 5vw 5vw 5vw;
